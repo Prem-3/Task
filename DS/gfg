@@ -1,0 +1,49 @@
+# Python3 program for the above approach
+ 
+# import the ceil permutations in function
+from math import ceil
+ 
+# Function to generate all the permutations
+from itertools import permutations
+ 
+# Function to check if the sequence is valid
+# or not
+def ValidSubsequence(seq):
+   
+  # If first element is greater or last second
+  # element is greater than last element
+  if (seq[0]<seq[1]) or (seq[-1]<seq[-2]): return False
+   
+  i = 0
+   
+  # If the sequence is decreasing or increasing
+  # or sequence is increasing return false
+  while i<len(seq)-1:
+    if seq[i]>seq[i + 1]:
+      pass
+    elif seq[i]<seq[i + 1]:
+      j = i + 1
+      if (j != len(seq)-1) and (seq[j]>seq[j + 1]):
+        return False
+    i+= 1
+     
+   # If the sequence do not follow above condition
+   # Return True
+  return True
+ 
+         
+# Driver code
+N = 5
+K = ceil(N / 2)
+arr = list(range(1, N + 1))
+ 
+# Generate all permutation of size N / 2 using
+# default function
+sequences = list(permutations(arr, K))
+ 
+# Print the sequence which is valid valley subsequence
+for seq in sequences:
+  # Check whether the seq is valid or not
+  # Function Call
+  if ValidSubsequence(seq):
+    print(seq, end =" ")
